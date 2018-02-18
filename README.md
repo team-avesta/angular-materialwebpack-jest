@@ -12,9 +12,9 @@ This is a Yeaoman Generator for creating an opionated Angular 1.x seed project w
 npm install -g yo webpack
 ```
 
-##### Install `generator-angular-webpack-es6`:
+##### Install `generator-ta-angular-webpack-jest`:
 ```
-npm install -g generator-angular-webpack-es6
+npm install -g generator-ta-angular-webpack-jest
 ```
 
 ### Directory Layout
@@ -70,9 +70,10 @@ npm install -g generator-angular-webpack-es6
 mkdir my-new-project && cd $_
 ```
 
-##### Run `yo angular-webpack-es6`, and select desired technologies.
+##### Run `yo generator-ta-angular-webpack-jest`, and select desired technologies.
 ##### `npm start` or `npm run dev` - to start development server on http://localhost:8080.
 ##### `npm run build` - To make production-ready build run  after few moments you will see build id `dist` folder.
+##### `npm test` - to run unit tests with jest
 
 ### Contribute
 
