@@ -1,27 +1,9 @@
-# generator-angular-webpack-es6
+# yo-angular-material-webpack-jest
 
-[![NPM Version](http://img.shields.io/npm/v/generator-angular-webpack-es6.svg?style=flat-square)](https://www.npmjs.com/package/generator-angular-webpack-es6)
-[![Download Month](http://img.shields.io/npm/dm/generator-angular-webpack-es6.svg?style=flat-square)](https://www.npmjs.com/package/generator-angular-webpack-es6)
-
-<div style="text-align:center" align="center">
-    <img src="generators/app/angular.png" alt="generator-angular-webpack-es6">
-</div>
-
-> Yeoman generator for AngularJS + Webpack with ES6 and SASS.
-
-> * Latest Webpack with Tree Shaking feature enabled
-> * Babel 6 with ES2017 features included
-> * Perfectly compatible with angularOcLazyLoad plugin
-> * SASS as CSS preprocessor
-> * Angular UI router as default router already included
-> * Optional installation bootstrap-sass source
-> * Optional angular modules installation
-> * All necessary webpack loaders already included (Sass, Images, Fonts, ngAnnotate, ngTemplateCache, etc.)
-> * Config has options for development and production mode
-
-> Use only webpack with npm. No external dependencies like bower, grunt, gulp...
-
-> Webpack@2 still in Beta and it may contain some bugs. Please, report them to Webpack developers directly.
+This is a Yeaoman Generator for creating an opionated Angular 1.x seed project with following tools stack
+- Angular Material (for angular 1.x)
+- Jest for unit tests
+- Webpack as module bundler with Babel for transpiling
 
 ### Install
 
@@ -92,13 +74,6 @@ mkdir my-new-project && cd $_
 ##### `npm start` or `npm run dev` - to start development server on http://localhost:8080.
 ##### `npm run build` - To make production-ready build run  after few moments you will see build id `dist` folder.
 
-### Known bugs:
-> * **Problem**: Webpack2 unable to import function with only export default value.
-
->   **Workaround**: Use ```import * as variable from "package" ``` instead of ```import variable from "package" ```
-
-> * **Problem**: Webpack3: ExtractTextPlugin and file-loader do not work with the use syntax. [Link to the issue](https://github.com/webpack/extract-text-webpack-plugin/issues/275).
-
 ### Contribute
 
 ##### If you want to contribute:
@@ -107,14 +82,5 @@ mkdir my-new-project && cd $_
 > * Link local project to be able install generator with `yo` from folder like from global installed package:
 > ``` npm link ```
 > * Make PR
-> * ...
-> * PROFIT
 
-#### TODO:
-> * Add .dockerfile
-> * Add example testing environment with karma and protractor
-> * Add more dotfiles
-> * ~~Add better examples with lazy-loaded modules~~ Added in 0.1.2
-> * ~~Update to Babel6~~ Added in 0.2.0
-
-#### Inspired by [generator-gulp-angular](https://github.com/Swiip/generator-gulp-angular) project.
+#### Forked from [generator-angular-webpack-es6](https://www.npmjs.com/package/generator-angular-webpack-es6) project and customized according to our needs.
