@@ -1,0 +1,14 @@
+<div layout="column" layout-fill>
+    <!-- header start -->
+    <div ng-include="'/app/modules/main/header/header.html'"></div>
+    <!-- header end -->
+    <div layout="row" flex>
+        <!-- sidenav starts -->
+        <div class="sidebar-container sidebar-final-width" layout="row">
+            <div ng-include="'/app/modules/main/sidenav/sidenav.html'" flex layout="row"></div>
+        </div>
+        <!-- sidenav end -->
+        <!-- home / views -->
+        <md-content flex md-scroll-y style="background-color:#DCDCDC" ui-view></md-content>
+    </div>
+</div>

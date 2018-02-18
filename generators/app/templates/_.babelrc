@@ -1,0 +1,18 @@
+{
+	"plugins": [
+		"angularjs-annotate", [
+			"module-resolver",
+			{
+				"root": ["./"],
+				"alias":
+				{
+					"_images": "./src/assets/images",
+					"_scripts": "./src/assets/js"
+				}
+			}
+		]
+	],
+	"presets": [
+		["es2015"]
+	]
+}
