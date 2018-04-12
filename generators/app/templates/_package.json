@@ -27,7 +27,7 @@
 		"setupTestFrameworkScriptFile": "./config/jest.init.js",
 		"transform":
 		{
-			"^.+\\.(js|jsx)$": "/home/vinaynb/Desktop/Projects/RND/temp-angular-es6/node_modules/babel-jest"
+			"^.+\\.(js|jsx)$": "./node_modules/babel-jest"
 		},
 		"moduleNameMapper":
 		{
@@ -54,6 +54,7 @@
 		"autoprefixer": "^6.5.0",
 		"babel-core": "^6.14.0",
 		"babel-loader": "^6.2.5",
+		"babel-jest": "^22.4.3",
 		"babel-plugin-angularjs-annotate": "^0.5.2",
 		"babel-plugin-module-resolver": "^3.0.0",
 		"babel-preset-env": "^1.6.1",
