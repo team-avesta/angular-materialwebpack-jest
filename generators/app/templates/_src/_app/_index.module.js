@@ -10,7 +10,7 @@ import indexComponents from './index.components';
 import indexRoutes from './index.routes';
 import mainModule from './modules/main/main.module';
 import layoutsModule from './modules/layouts/layouts.module';
-
+import loginModule from './modules/login/login.module';
 
 const App = angular.module(
 	"<%= props.appName %>", [
@@ -34,8 +34,8 @@ const App = angular.module(
 
 		// pages
 		mainModule.name,
-		layoutsModule.name
-
+		layoutsModule.name,
+		loginModule.name
 	]
 );
 

@@ -24,7 +24,7 @@ export default function(app) {
                 id: 11,
                 name: '2 Column',
                 icon: 'view_stream',
-                sref: 'login'
+                sref: 'main.layouts.2column'
             }, {
                 id: 12,
                 name: 'Dialog',
