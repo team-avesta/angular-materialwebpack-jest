@@ -111,16 +111,25 @@ module.exports = function (AngularWebpackES6Generator) {
             this.destinationPath('src/app/core/directives')
         );
 
-        this.fs.copyTpl(
+        this.fs.copy(
             this.templatePath('_src/_app/_core/_services/**/*'),
-            this.destinationPath('src/app/core/services'),
-            this
+            this.destinationPath('src/app/core/services')
+        );
+
+        this.fs.copy(
+            this.templatePath('_src/_app/_core/_constants/**/*'),
+            this.destinationPath('src/app/core/constants')
         );
 
         this.fs.copyTpl(
             this.templatePath('_src/_app/_modules/main/**/*'),
             this.destinationPath('src/app/modules/main'),
             this
+        );
+
+        this.fs.copy(
+            this.templatePath('_src/_assets/_fonts/**/*'),
+            this.destinationPath('src/assets/fonts')
         );
 
         this.fs.copyTpl(
