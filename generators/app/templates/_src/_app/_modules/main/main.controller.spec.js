@@ -6,7 +6,7 @@ describe('dashboard module test', function() {
 	let ctrl;
 	beforeEach(() => {
 		//include the main module
-		angular.mock.module('<%= props.appName %>');
+		angular.mock.module('myNgApp');
 		//obtain reference to controller object
 		angular.mock.inject(($controller) => {
 			ctrl = $controller('MainController');

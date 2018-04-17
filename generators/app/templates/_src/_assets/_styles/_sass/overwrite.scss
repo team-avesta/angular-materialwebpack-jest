@@ -1,0 +1,128 @@
+ @import "variable";
+
+ body {
+ 	-webkit-font-smoothing: antialiased;
+ 	font-family: $regular-font;
+ 	color: $smokyblack;
+ 	//font-size: 16px;
+ }
+
+ body,
+ md-button,
+ md-checkbox,
+ md-progress-circular,
+ md-progress-linear,
+ md-radio-button,
+ md-slider,
+ md-switch,
+ md-tabs,
+ md-text-float,
+ md-toolbar {
+ 	color: $asbestos;
+ }
+
+ .dialog-content {
+ 	padding: 8px !important;
+ }
+
+*:focus {
+  outline: none !important;
+}
+
+ a.md-button:not([disabled]):hover {
+ 	.menu-text {
+ 		color: $asbestos;
+ 	}
+ 	i {
+ 		color: $asbestos;
+ 	}
+ }
+
+ md-input-container {
+ 	height: 30px;
+ }
+
+ .menu-end-border>md-list-item .md-no-style {
+ 	padding: 0 !important;
+ }
+
+ md-content {
+ 	background: $peace;
+ }
+ /* tab scroll issue */
+
+ md-tab-content>div {
+ 	width: 100%;
+ 	height: 100%;
+ }
+
+ md-tabs:not(.md-no-tab-content):not(.md-dynamic-height) {
+ 	min-height: 100% !important;
+ }
+
+ md-tabs.stretch-height md-tab-content>div {
+ 	margin: 0;
+ 	width: 100%;
+ 	min-height: 100%;
+ 	height: 100%;
+ }
+
+ /* Capitalize every text input */
+
+ input[type="email"] {
+ 	text-transform: lowercase !important;
+ }
+
+
+ input[type=number]::-webkit-outer-spin-button,
+ input[type=number]::-webkit-inner-spin-button {
+ 	-webkit-appearance: none;
+ 	margin: 0;
+ }
+
+ input[type=number] {
+ 	-moz-appearance: textfield;
+ }
+
+ /* scrollbar */
+
+ ::-webkit-scrollbar-track {
+ 	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+ 	border-radius: 10px;
+ 	background-color: $scrollbar
+ }
+
+ ::-webkit-scrollbar {
+ 	width: 6px;
+ 	background-color: $scrollbar;
+ }
+
+ ::-webkit-scrollbar-thumb {
+ 	border-radius: 10px;
+ 	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+ 	background-color: $scrollbar-thumb;
+ }
+
+ /* overriding valdiation schema */
+
+
+md-input-container {
+ 	height: 30px;
+}
+
+.md-errors-spacer {
+    float: none !important;
+    p {
+        font-family: $medium-font;
+        font-size: 13px;
+        color: $blush;
+        overflow: hidden;
+        position: absolute;
+        top: 32px;
+        -webkit-margin-before: 0em;
+        -webkit-margin-after: 0em;
+        -webkit-margin-start: 0px;
+        -webkit-margin-end: 0px;
+    }
+}
+

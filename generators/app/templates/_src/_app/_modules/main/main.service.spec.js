@@ -4,7 +4,7 @@ describe('main service test', function() {
 	let service;
 	beforeEach(() => {
 		//include the main module
-		angular.mock.module('<%= props.appName %>');
+		angular.mock.module('myNgApp');
 		//get reference to service object
 		angular.mock.inject((MainService) => {
 			service = MainService;

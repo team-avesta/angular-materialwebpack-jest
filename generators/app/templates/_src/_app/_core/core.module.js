@@ -20,7 +20,6 @@ inputLimitDirective(shared);
 fileInputDirective(shared);
 
 //services
-import constants from './services/constants';
 import toastService from './services/toast.service';
 import resolverProvider from './services/resolver.provider';
 import ajaxService from './services/ajax.service';
@@ -34,8 +33,8 @@ import modelTransformerService from './services/modelTransformer.service';
 import pubSubService from './services/pubSub.service';
 import restangularConfigService from './services/restangularConfig.service';
 import schemaValidationService from './services/schemaValidate.service';
+import arrayService from './services/array.service';
 
-constants(shared);
 toastService(shared);
 resolverProvider(shared);
 ajaxService(shared);
@@ -49,5 +48,15 @@ modelTransformerService(shared);
 pubSubService(shared);
 restangularConfigService(shared);
 schemaValidationService(shared);
+arrayService(shared);
+
+//constants
+import urlConstantService from './constants/urlConstant.service.js';
+import eventConstantService from './constants/eventsConstant.service.js';
+import stateConstantService from './constants/stateConstant.service.js';
+
+urlConstantService(shared);
+eventConstantService(shared);
+stateConstantService(shared);
 
 export default shared;

@@ -9,16 +9,16 @@ describe('restangular Service rules test', function() {
 		_requestInterceptors = null,
 		_restangularConfigService,
 		_pubSubService,
-		_pubSubEvents,
+		_eventsConstantService,
 		q = null,
 		sandbox = null;
 
 	beforeEach(function() {
-		angular.mock.module("<%= props.appName %>");
+		angular.mock.module("myNgApp");
 
-		angular.mock.inject((restangularConfigService, Restangular, toastService, pubSubService, $q, pubSubEvents) => {
+		angular.mock.inject((restangularConfigService, Restangular, toastService, pubSubService, $q, eventsConstantService) => {
 			_restangularConfigService = restangularConfigService
-			_pubSubEvents = pubSubEvents;
+			_eventsConstantService = eventsConstantService;
 			_Restangular = Restangular;
 			_toastService = toastService;
 			_pubSubService = pubSubService;
@@ -164,6 +164,6 @@ describe('restangular Service rules test', function() {
 		_pubSubService.publish = jest.fn();
 		_restangularConfigService.showErrorMessage(data);
 		expect(_pubSubService.publish).toHaveBeenCalledTimes(1);
-		expect(_pubSubService.publish).toHaveBeenCalledWith(_pubSubEvents.message._ADD_ERROR_MESSAGE_, [data]);
+		expect(_pubSubService.publish).toHaveBeenCalledWith(_eventsConstantService.message._ADD_ERROR_MESSAGE_, [data]);
 	});
 });

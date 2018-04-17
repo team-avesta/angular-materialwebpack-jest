@@ -4,7 +4,7 @@ export default function(app) {
 	app
 		.factory('restangularConfigService', service)
 
-	function service(Restangular, toastService, authService, pubSubService, pubSubEvents, $q, configUrl) {
+	function service(Restangular, toastService, authService, pubSubService, eventsConstantService, $q, urlConstantService, MainService) {
 		var isOffline = false;
 		var service = {
 			init: init,
@@ -17,14 +17,16 @@ export default function(app) {
 		//////////////////////
 
 		function init() {
-			Restangular.setBaseUrl(configUrl.serverUrl + '/api/');
+			Restangular.setBaseUrl(urlConstantService.apiEndpoint + '/api/');
 			Restangular.setErrorInterceptor(function(response, deferred, responseHandler) {
-				if (response.status === 401) {
-					//handle auth error here
+				//in case of any 401 error code redirect to login page
+				if (response.status === 401 || response.status === 403) {
+					dashboardService.redirectToLogin();
 					return true;
 				}
 
-				pubSubService.publish(pubSubEvents.message._HIDE_LOADING_SPINNER_);
+				pubSubService.publish(eventsConstantService.message._HIDE_LOADING_SPINNER_);
+				pubSubService.publish(eventsConstantService.message._HIDE_DIALOG_LOADING_SPINNER_);
 
 				var errorObj = { message: 'Something went wrong.' };
 				if (response.status === -1) {
@@ -34,11 +36,13 @@ export default function(app) {
 				} else {
 					service.showErrorMessage(errorObj);
 				}
-				return true; // error not handled
+				return deferred.reject('Something went wrong. Please try again.');
 			});
 
 			Restangular.addResponseInterceptor(function(data, operation, what, url, response, deferred) {
-				pubSubService.publish(pubSubEvents.message._HIDE_LOADING_SPINNER_);
+				pubSubService.publish(eventsConstantService.message._HIDE_LOADING_SPINNER_);
+				pubSubService.publish(eventsConstantService.message._HIDE_DIALOG_LOADING_SPINNER_);
+
 				if (data.message && !data.isDialog) {
 					data.success ? toastService.successToast(data) : toastService.failureToast(data);
 				}
@@ -55,13 +59,14 @@ export default function(app) {
 				//uncomment if you use JWT tokens instead of cookies
 				/*var x_auth_token = authService.getAuthToken();
 				Restangular.setDefaultHeaders({ 'x-auth-token': x_auth_token });*/
-				pubSubService.publish(pubSubEvents.message._SHOW_LOADING_SPINNER_);
+				pubSubService.publish(eventsConstantService.message._SHOW_LOADING_SPINNER_);
+				pubSubService.publish(eventsConstantService.message._SHOW_DIALOG_LOADING_SPINNER_);
 				return httpConfig;
 			});
 		}
 
 		function showErrorMessage(data) {
-			pubSubService.publish(pubSubEvents.message._ADD_ERROR_MESSAGE_, [data]);
+			pubSubService.publish(eventsConstantService.message._ADD_ERROR_MESSAGE_, [data]);
 		}
 
 	}

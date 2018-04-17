@@ -3,7 +3,7 @@
 import './sidenav.scss';
 export default function(app) {
     app
-        .controller('sidenavController', controller)
+        .controller('sidenavCtrl', controller)
 
     function controller($state, $scope) {
         'ngInject';
@@ -20,35 +20,33 @@ export default function(app) {
             name: 'Layouts',
             icon: 'note_add',
             is_accordian: true,
-            subMenu: [{
+            sub_menu: [{
                 id: 11,
-                name: '1 Column',
+                name: '2 Column',
                 icon: 'view_stream',
-                sref: 'main.layouts.1column'
+                sref: 'login'
             }, {
                 id: 12,
-                name: '2 Column',
+                name: 'Dialog',
                 icon: 'card_membership',
-                sref: 'main.layouts.2column'
+                sref: 'main.layouts.dialog'
             }, {
                 id: 13,
-                name: '3 Column',
+                name: 'Grid',
                 icon: 'view_stream',
-                sref: 'main.layouts.3column'
+                sref: 'main.layouts.grid'
             }, {
                 id: 14,
-                name: 'Horizontal layouts',
+                name: 'Form',
                 icon: 'person',
-                sref: 'main.layouts.horcenter'
+                sref: 'main.layouts.form'
             }, {
                 id: 15,
-                name: 'Vertical Center',
+                name: 'Report Table',
                 icon: 'people',
-                sref: 'main.layouts.vercenter'
+                sref: 'main.layouts.report'
             }]
         }];
-
-        $scope.$on('$stateChangeSuccess', vm.closeSidenav);
 
         vm.onSelectMenu = function(menu) {
             $state.go(menu.sref);

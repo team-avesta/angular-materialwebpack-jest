@@ -1,0 +1,37 @@
+<div layout-fill layout="column" class="grid">
+	<div layout="row" class="h48" layout-align="start center">
+		<div layout-padding flex class="grid-title">Report Table</div>
+	</div>
+	<div layout="column" class="main-report-container has-pad" flex>
+		<div layout="row" class="report-table-header">
+			<div class="report-table-header-td" flex="10">
+				<span>Sr</span>
+			</div>
+			<div class="report-table-header-td" flex="25">
+				<span>Code</span>
+			</div>
+			<div class="report-table-header-td" flex="50">
+				<span>Team Name</span>
+			</div>
+			<div class="report-table-header-td" flex="15">
+				<span>Action</span>
+			</div>
+		</div>
+		<div layout="row" class="report-table-header border-top-none" ng-repeat="team in vm.teamList">
+			<div class="report-table-td" flex="10">
+				<span>{{$index + 1}}</span>
+			</div>
+			<div class="report-table-td" flex="25">
+				<span>{{team.code}}</span>
+			</div>
+			<div class="report-table-td" flex="50">
+				<span>{{team.name}}</span>
+			</div>
+			<div class="report-table-td" flex="15">
+				<md-button md-no-ink class="md-icon-button" flex>
+					<i class="material-icons">add</i>
+				</md-button>
+			</div>
+		</div>
+	</div>
+</div>

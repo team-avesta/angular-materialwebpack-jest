@@ -9,6 +9,7 @@ import uiRouter from '@uirouter/angularjs';
 import route from './layouts.route';
 import service from './layouts.service';
 import controller from './layouts.controller';
+import dialogFormController from './dialogForm.controller';
 import config from './layouts.config';
 import run from './layouts.run';
 
@@ -22,6 +23,7 @@ service(module);
 
 //controllers
 controller(module);
+dialogFormController(module);
 
 //config block
 config(module);

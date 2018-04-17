@@ -1,0 +1,25 @@
+@import "variable";
+
+.vAccordion--default v-pane-content>div {
+	padding-bottom: 0 !important;
+}
+
+.vAccordion--default v-pane.is-expanded>v-pane-header {
+	border-bottom-color: $accent !important;
+}
+
+.vAccordion--default v-pane-header {
+	margin-bottom: 0 !important;
+	border-bottom: none !important;
+}
+
+.vAccordion--default v-pane-header::after,
+.vAccordion--default v-pane-header::before {
+	right: 10px !important;
+	background-color: $accent !important;
+}
+
+.vAccordion--default v-pane-header:hover,
+.vAccordion--default v-pane-header:focus {
+	color: $accent !important;
+}

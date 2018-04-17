@@ -45,7 +45,8 @@
 		"angular": "^1.6.6",
 		"ng-storage": "^0.3.2",
 		"angular-aria": "^1.6.6",
-		"v-accordion": "^1.6.0"
+		"v-accordion": "^1.6.0",
+		"angular-material-data-table": "^0.10.10"
 	},
 	"devDependencies":
 	{

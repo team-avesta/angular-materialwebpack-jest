@@ -4,7 +4,7 @@ export default function(app) {
     app
         .factory('dialogService', service);
 
-    function service($mdDialog, pubSubService, pubSubEvents, $document) {
+    function service($mdDialog, pubSubService, eventsConstantService, $document, $q) {
         var messageText = '';
         var displayType = 'popup';
 
@@ -12,7 +12,9 @@ export default function(app) {
             init: init,
             displayDialogHandler: displayDialogHandler,
             showPopupDialog: showPopupDialog,
-            showConfirmationDialog: showConfirmationDialog
+            showPopupDialogWithPromise: showPopupDialogWithPromise,
+            showConfirmationDialog: showConfirmationDialog,
+            confirmDelete: confirmDelete
         };
 
         return dialog;
@@ -31,11 +33,11 @@ export default function(app) {
             //$timeout(function() {
             switch (displayType) {
                 case 'popup':
-                    //pubSubService.publish(pubSubEvents.message._DISPLAY_POPUP_, [messageText]);
+                    //pubSubService.publish(eventsConstantService.message._DISPLAY_POPUP_, [messageText]);
                     dialog.showPopupDialog(data.title, data.msg);
                     break;
                 case 'confirmation':
-                    //pubSubService.publish(pubSubEvents.message._DISPLAY_CONFIRMATION_DIALOG_, [messageText]);
+                    //pubSubService.publish(eventsConstantService.message._DISPLAY_CONFIRMATION_DIALOG_, [messageText]);
                     dialog.showConfirmationDialog(data.title, data.msg, data.okBtn, data.cancelBtn, data.model);
                     break;
                 default:
@@ -44,10 +46,11 @@ export default function(app) {
             }
         }
 
+
         function init() {
             messageText = '';
             displayType = 'popup';
-            pubSubService.subscribe(pubSubEvents.message._DISPLAY_DIALOG_, dialog.displayDialogHandler);
+            pubSubService.subscribe(eventsConstantService.message._DISPLAY_DIALOG_, dialog.displayDialogHandler);
         }
 
         function showPopupDialog(title, msg) {
@@ -56,7 +59,7 @@ export default function(app) {
             // to prevent interaction outside of dialog
             $mdDialog.show(
                 $mdDialog.alert()
-                .parent(angular.element($document.querySelector('#popupContainer')))
+                //  .parent(angular.element($document.querySelector('#popupContainer')))
                 .clickOutsideToClose(true)
                 .title(title)
                 .content(msg)
@@ -65,21 +68,60 @@ export default function(app) {
             );
         }
 
-        function showConfirmationDialog(title, msg, okBtn, cancelBtn, model) {
-            var confirm = $mdDialog.confirm()
+        function showPopupDialogWithPromise(title, msg) {
+            // Appending dialog to document.body to cover sidenav in docs app
+            // Modal dialogs should fully cover application
+            // to prevent interaction outside of dialog
+            return $mdDialog.show(
+                $mdDialog.alert()
+                .parent(angular.element($document[0].querySelector('#popupContainer')))
                 .title(title)
                 .content(msg)
                 .ariaLabel(msg)
-                .ok(okBtn)
-                .cancel(cancelBtn);
+                .ok('OK')
+            );
+        }
 
-            $mdDialog
-                .show(confirm)
-                .then(function() {
-                    pubSubService.publish(pubSubEvents.message._USER_RESPONDED_, [model]);
+        function showConfirmationDialog(title, msg, okBtn, cancelBtn) {
+            return $q(function(resolve, reject) {
+                var confirm = $mdDialog.confirm()
+                    .title(title)
+                    .content(msg)
+                    .ariaLabel(msg)
+                    .ok(okBtn)
+                    .cancel(cancelBtn);
+
+                $mdDialog
+                    .show(confirm)
+                    .then(function() {
+                        resolve();
+                    }, function() {
+                        console.log('click cancel');
+                        reject();
+                    });
+            });
+        }
+
+        function confirmDelete(item) {
+            return $q(function(resolve, reject) {
+                var message = 'Are you sure you want to delete this ' + item + '?';
+                var label = 'Delete';
+                var confirmDialog = $mdDialog.confirm()
+                    .title('Confirm')
+                    .textContent(message)
+                    .ariaLabel(label)
+                    .ok('YES')
+                    .cancel('NO')
+                    //.targetEvent(ev)
+                    .clickOutsideToClose(false);
+
+                var promise = $mdDialog.show(confirmDialog);
+                promise.then(function() {
+                    resolve();
                 }, function() {
                     console.log('click cancel');
                 });
+            });
         }
     }
 }

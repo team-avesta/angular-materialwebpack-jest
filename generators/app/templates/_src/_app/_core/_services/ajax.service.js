@@ -2,9 +2,8 @@
 export default function(app) {
     app.factory('ajaxService', service);
 
-    function service($http, configUrl, $q, pubSubService, pubSubEvents) {
-
-        var serverUrl = configUrl.serverUrl;
+    function service($http, urlConstantService, $q, pubSubService, eventsConstantService) {
+        var serverUrl = urlConstantService.apiEndpoint;
         var service = {
             post: postData,
             put: putData,
@@ -126,20 +125,20 @@ export default function(app) {
 
         function startLoader(isDialog) {
             if (isDialog) {
-                pubSubService.publish(pubSubEvents.message._SHOW_DIALOG_LOADING_SPINNER_, []);
+                pubSubService.publish(eventsConstantService.message._SHOW_DIALOG_LOADING_SPINNER_, []);
             } else {
-                pubSubService.publish(pubSubEvents.message._SHOW_LOADING_SPINNER_, []);
+                pubSubService.publish(eventsConstantService.message._SHOW_LOADING_SPINNER_, []);
             }
         }
 
         function toastDisplay(res) {
-            pubSubService.publish(pubSubEvents.message._HIDE_LOADING_SPINNER_, []);
-            pubSubService.publish(pubSubEvents.message._HIDE_DIALOG_LOADING_SPINNER_, []);
+            pubSubService.publish(eventsConstantService.message._HIDE_LOADING_SPINNER_, []);
+            pubSubService.publish(eventsConstantService.message._HIDE_DIALOG_LOADING_SPINNER_, []);
 
             var statusCode = res.status;
 
             if (statusCode < 200 || statusCode > 299) {
-                pubSubService.publish(pubSubEvents.message._ADD_ERROR_MESSAGE_, [{
+                pubSubService.publish(eventsConstantService.message._ADD_ERROR_MESSAGE_, [{
                     message: obj.message,
                     type: 'toast'
                 }]);
@@ -149,12 +148,12 @@ export default function(app) {
         }
 
         function errorCall(d, reject) {
-            pubSubService.publish(pubSubEvents.message._HIDE_LOADING_SPINNER_, []);
-            pubSubService.publish(pubSubEvents.message._HIDE_DIALOG_LOADING_SPINNER_, []);
+            pubSubService.publish(eventsConstantService.message._HIDE_LOADING_SPINNER_, []);
+            pubSubService.publish(eventsConstantService.message._HIDE_DIALOG_LOADING_SPINNER_, []);
 
             var obj = d.data;
             if (obj) {
-                pubSubService.publish(pubSubEvents.message._ADD_ERROR_MESSAGE_, [{
+                pubSubService.publish(eventsConstantService.message._ADD_ERROR_MESSAGE_, [{
                     message: obj.message ? obj.message : 'please contact administrator for more information.',
                     type: 'toast',
                     status: d.status

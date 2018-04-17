@@ -3,7 +3,7 @@ export default function(app) {
     app
         .factory('toastService', service);
 
-    function service($mdToast) {
+    function service($mdToast, eventsConstantService, pubSubService) {
 
         var last = {
             bottom: false,
@@ -27,8 +27,8 @@ export default function(app) {
         ////////////////////
 
         function init() {
-            PubSubService.subscribe(pubSubEvents.message._SHOW_SUCCESS_TOAST_MESSAGE_, ToastService.successToast);
-            PubSubService.subscribe(pubSubEvents.message._SHOW_FAILURE_TOAST_MESSAGE_, ToastService.failureToast);
+            pubSubService.subscribe(eventsConstantService.message._SHOW_SUCCESS_TOAST_MESSAGE_, ToastService.successToast);
+            pubSubService.subscribe(eventsConstantService.message._SHOW_FAILURE_TOAST_MESSAGE_, ToastService.failureToast);
         }
 
         function sanitizePosition() {

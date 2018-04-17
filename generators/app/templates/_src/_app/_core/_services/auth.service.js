@@ -17,31 +17,52 @@
     Here ['programmes.all', 'programmes.read'] are required policies to access the state home. If
     user has any one of the above policy, he/she can access the state home.
  */
+'use strict';
 export default function(app) {
-    'use strict';
     app
         .factory('authService', service);
 
     function service($rootScope) {
-        var auth = {};
+        let x_auth_token = '';
+        const service = {
+            getAuthToken: getAuthToken,
+            setAuthToken: setAuthToken,
+            checkPoliciesForView: checkPoliciesForView,
+            userHasPoliciesForView: userHasPoliciesForView,
+            userHasPolicy: userHasPolicy
+        };
 
-        auth.checkPoliciesForView = function(view) {
+        return service;
+
+        /**
+         * Functions implementation below
+         */
+
+        function getAuthToken() {
+            return service.x_auth_token;
+        }
+
+        function setAuthToken(x_auth_token) {
+            service.x_auth_token = x_auth_token;
+        }
+
+        function checkPoliciesForView(view) {
             if (!view.requiresAuthentication) {
                 return true;
             }
 
             return userHasPoliciesForView(view);
-        };
+        }
 
-        var userHasPoliciesForView = function(view) {
+        function userHasPoliciesForView(view) {
             if (!view.policies || !view.policies.length) {
                 return true;
             }
 
             return auth.userHasPolicy(view.policies);
-        };
+        }
 
-        auth.userHasPolicy = function(policies) {
+        function userHasPolicy(policies) {
             var found = false;
             var data = {
                 user_policies: ['programmes.all', 'programmes.read']
@@ -56,9 +77,7 @@ export default function(app) {
             });
 
             return found;
-        };
-
-        return auth;
+        }
     }
 
 }

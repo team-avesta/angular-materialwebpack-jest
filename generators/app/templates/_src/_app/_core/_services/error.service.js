@@ -3,21 +3,35 @@ export default function(app) {
     app
         .factory('errorService', service);
 
-    function service(PubSubService, pubSubEvents, $rootScope) {
+    function service(pubSubService, eventsConstantService, $rootScope, toastService, $timeout) {
         var errorMessages = {};
 
         var errors = {
             init: init,
-            addErrorMessageHandler: addErrorMessageHandler
+            addErrorMessageHandler: addErrorMessageHandler,
+            logExceptionToConsole: logExceptionToConsole,
+            logErrorToConsole: logErrorToConsole
         };
 
         return errors;
 
         ////////////////
 
+        function logExceptionToConsole(err) {
+            $timeout(function() {
+                throw new Error(err && err.stack ? err.stack : 'Error!!')
+            }, 0);
+        }
+
+        function logErrorToConsole(err) {
+            $timeout(function() {
+                throw new Error()
+            }, 0);
+        }
+
         function init() {
             errorMessages = {};
-            PubSubService.subscribe(pubSubEvents.message._ADD_ERROR_MESSAGE_, errors.addErrorMessageHandler);
+            pubSubService.subscribe(eventsConstantService.message._ADD_ERROR_MESSAGE_, errors.addErrorMessageHandler);
         }
 
         function addErrorMessageHandler(data) {
@@ -26,7 +40,7 @@ export default function(app) {
             }
 
             errorMessages = data.message;
-            var type = data.type;
+            var type = data.isDialog ? 'dialog' : 'toast';
             var status = data.status;
             if (status === 401) {
                 $rootScope.$broadcast('unauthorized');
@@ -35,25 +49,25 @@ export default function(app) {
             switch (type) {
                 case 'toast':
                     {
-                        //PubSubService.publish(pubSubEvents.message._DISPLAY_POPUP_, [messageText]);
-                        PubSubService.publish(pubSubEvents.message._SHOW_FAILURE_TOAST_MESSAGE_, [{
+                        toastService.failureToast({
                             message: errorMessages
-                        }]);
+                        });
                         break;
                     }
                 case 'dialog':
                     {
-                        //PubSubService.publish(pubSubEvents.message._DISPLAY_CONFIRMATION_DIALOG_, [messageText]);
-                        PubSubService.publish(pubSubEvents.message._SHOW_FAILURE_DIALOG_MESSAGE_, [{
-                            message: errorMessages
+                        pubSubService.publish(eventsConstantService.message._DISPLAY_DIALOG_, [{
+                            title: 'Error',
+                            msg: errorMessages,
+                            type: 'popup'
                         }]);
                         break;
                     }
                 default:
                     {
-                        PubSubService.publish(pubSubEvents.message._SHOW_FAILURE_TOAST_MESSAGE_, [{
+                        toastService.failureToast({
                             message: errorMessages
-                        }]);
+                        });
                         break;
                     }
             }

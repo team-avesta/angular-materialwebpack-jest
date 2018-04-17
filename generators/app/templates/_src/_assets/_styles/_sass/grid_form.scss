@@ -1,0 +1,93 @@
+@import "variable";
+
+.grid {
+	.grid-title {
+		font-size: 19px;
+		font-family: $bold-font;
+	}
+	.grid-subtitle {
+		font-size: 16px;
+		font-family: $medium-font;
+	}
+	.grid-minititle {
+		font-size: 14px;
+	}
+}
+
+
+div.upload {
+	width: 157px;
+	height: 36px;
+	overflow: hidden;
+	color: rgba(0, 0, 0, 0.87);
+	background-color: rgb(255, 145, 0);
+	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+	border-radius: 3px;
+	cursor: pointer !important;
+	.upload-btn-container {
+		width: inherit;
+		height: inherit;
+		background-color: $carrot;
+		color: $smokyblack;
+		border: none;
+		overflow: hidden;
+		box-shadow: none;
+		&:focus {
+			outline: none;
+		}
+	}
+}
+
+div.upload.disabledBtn {
+	background-color: rgba(0, 0, 0, 0.12) !important;
+}
+
+
+.verified-text,
+.active-text,
+.passgreen {
+	color: $fern !important;
+	text-transform: uppercase !important;
+}
+
+.awaiting-text,
+.excarrot {
+	color: $carrot !important;
+	text-transform: uppercase !important;
+}
+
+.not-verified-text,
+.inactive-text,
+.pending-text,
+.failred {
+	color: $blush !important;
+	text-transform: uppercase !important;
+}
+
+.rightalignicons {
+	text-align: right !important;
+}
+
+
+
+/* filters */
+
+.filter-container {
+	background: $peace;
+	position: absolute;
+	z-index: 5;
+	width: 100%;
+	box-shadow: 0px 5px 2px -3px rgba(0, 0, 0, 0.2);
+	transition: height 400ms cubic-bezier(0.4, 0, 0.2, 1);
+	height: 0;
+	visibility: hidden;
+	padding: 16px;
+	box-sizing: border-box;
+	height: 100%
+}
+
+.filter-open {
+	height: auto !important;
+	visibility: visible !important;
+	top: 48px;
+}

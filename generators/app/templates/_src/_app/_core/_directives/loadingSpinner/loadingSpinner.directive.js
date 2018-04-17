@@ -5,7 +5,7 @@ export default function(app) {
     app
         .directive('loadingSpinner', directive);
 
-    function directive(pubSubService, pubSubEvents) {
+    function directive(pubSubService, eventsConstantService) {
         var directive = {
             link: link,
             templateUrl: spinnerTpl,
@@ -22,8 +22,8 @@ export default function(app) {
 
             scope.textvalue = 'Please wait...';
 
-            scope.showHandle = pubSubService.subscribe(pubSubEvents.message._SHOW_LOADING_SPINNER_, scope.showRequestHandler);
-            scope.hideHandle = pubSubService.subscribe(pubSubEvents.message._HIDE_LOADING_SPINNER_, scope.hideRequestHandler);
+            scope.showHandle = pubSubService.subscribe(eventsConstantService.message._SHOW_LOADING_SPINNER_, scope.showRequestHandler);
+            scope.hideHandle = pubSubService.subscribe(eventsConstantService.message._HIDE_LOADING_SPINNER_, scope.hideRequestHandler);
 
             scope.$on('$destroy', function() {
                 pubSubService.unsubscribe(scope.showHandle);

@@ -5,7 +5,7 @@ export default function(app) {
     app
         .directive('loadingSpinnerDialog', directive);
 
-    function directive(pubSubService, pubSubEvents) {
+    function directive(pubSubService, eventsConstantService) {
         var directive = {
             link: link,
             templateUrl: spinnerTpl,
@@ -24,8 +24,8 @@ export default function(app) {
             if (!scope.notloading) {
                 element.addClass('hidden')
             }
-            scope.showHandle = pubSubService.subscribe(pubSubEvents.message._SHOW_DIALOG_LOADING_SPINNER_, showRequestHandler);
-            scope.hideHandle = pubSubService.subscribe(pubSubEvents.message._HIDE_DIALOG_LOADING_SPINNER_, hideRequestHandler);
+            scope.showHandle = pubSubService.subscribe(eventsConstantService.message._SHOW_DIALOG_LOADING_SPINNER_, showRequestHandler);
+            scope.hideHandle = pubSubService.subscribe(eventsConstantService.message._HIDE_DIALOG_LOADING_SPINNER_, hideRequestHandler);
 
             function showRequestHandler() {
                 ////console.log('asdadsasdsa')

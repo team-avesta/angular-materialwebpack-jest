@@ -22,7 +22,7 @@ const App = angular.module(
 		"validation",
 		"validation.schema",
 		"validation.rule",
-
+		"md.data.table",
 		// core
 		coreModule.name,
 

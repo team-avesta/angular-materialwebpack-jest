@@ -6,7 +6,7 @@ describe('validation rules test', function() {
 		expression = null;
 
 	beforeEach(function() {
-		angular.mock.module("<%= props.appName %>");
+		angular.mock.module("myNgApp");
 
 		angular.mock.inject(($validation) => {
 			validationProvider = $validation;
