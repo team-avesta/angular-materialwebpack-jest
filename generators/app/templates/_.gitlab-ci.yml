@@ -1,0 +1,10 @@
+---
+job1:
+  script:
+    - whoami
+    - "cd $MIRROR_REPO_PATH"
+    - "git fetch"
+    - "git push sync --mirror"
+  stage: build
+stages:
+  - build

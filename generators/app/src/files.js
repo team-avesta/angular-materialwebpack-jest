@@ -158,6 +158,11 @@ module.exports = function (AngularWebpackES6Generator) {
             this.destinationPath('src/app/modules/forgotPassword')
         );
 
+        this.fs.copy(
+            this.templatePath('_.gitlab-ci.yml'),
+            this.destinationPath('.gitlab-ci.yml')
+        );
+
         if (this.props.ocLazyLoad) {
             this.fs.copy(
                 this.templatePath('_src/_app/_modules/async-page-example/**/*'),
