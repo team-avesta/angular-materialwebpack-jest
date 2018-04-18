@@ -4,7 +4,6 @@ export default function(app) {
 	app.factory('<%=featureName+"Service"%>', service)
 
 	function service($log) {
-		'ngInject';
 		var service = {
 			testFunction: testFunction
 		};

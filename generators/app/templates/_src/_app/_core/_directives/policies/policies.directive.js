@@ -21,12 +21,14 @@ export default function(app) {
             },
 
             link: function(scope, elem, attrs, _, transclude) {
-                if (!authService.userHasPolicy(scope.policies)) {
-                    scope.$destroy();
-                    scope = null;
-                    elem.remove();
-                    elem = null;
-                }
+                authService.getUserPolicies().then(function(res) {
+                    if (!authService.userHasPolicy(scope.policies)) {
+                        scope.$destroy();
+                        scope = null;
+                        elem.remove();
+                        elem = null;
+                    }
+                });
             }
         }
     }

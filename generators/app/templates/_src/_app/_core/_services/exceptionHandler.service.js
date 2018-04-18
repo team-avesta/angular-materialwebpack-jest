@@ -7,8 +7,6 @@ export default function(app) {
         $provide.decorator('$exceptionHandler', extendExceptionHandler);
     }
 
-    extendExceptionHandler.$inject = ['$delegate'];
-
     function extendExceptionHandler($delegate) {
         return function(exception, cause) {
             $delegate(exception, cause);

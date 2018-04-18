@@ -10,8 +10,6 @@ import route from './layouts.route';
 import service from './layouts.service';
 import controller from './layouts.controller';
 import dialogFormController from './dialogForm.controller';
-import config from './layouts.config';
-import run from './layouts.run';
 
 var module = angular.module("layouts", [uiRouter]);
 
@@ -24,11 +22,5 @@ service(module);
 //controllers
 controller(module);
 dialogFormController(module);
-
-//config block
-config(module);
-
-//run block
-run(module);
 
 export default module;

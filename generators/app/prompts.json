@@ -111,18 +111,6 @@
 },
 {
 	"type": "confirm",
-	"name": "lodash",
-	"message": "Would you like to include Lodash - A modern JavaScript utility library delivering modularity, performance & extras.",
-	"default": true
-},
-{
-	"type": "confirm",
-	"name": "moment",
-	"message": "Would you like to include Moment.js - Library for parse, validate, manipulate, and display dates in JavaScript.",
-	"default": true
-},
-{
-	"type": "confirm",
 	"name": "ocLazyLoad",
 	"message": "Would you like to include angularOclazyLoad plugin to load angular modules asynchronously.",
 	"default": true

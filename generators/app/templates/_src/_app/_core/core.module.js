@@ -9,7 +9,7 @@ import loadingSpinner from './directives/loadingSpinner/loadingSpinner.directive
 import loadingSpinnerDialog from './directives/loadingSpinner/loadingSpinnerDialog.directive';
 import policiesDirective from './directives/policies/policies.directive';
 import inputLimitDirective from './directives/inputLimit/inputLimit.directive';
-import fileInputDirective from './directives/fileInput/fileInput.directive';
+import fileReadDirective from './directives/fileRead/fileRead.directive';
 
 validationTestDirective(shared);
 focusMe(shared);
@@ -17,7 +17,7 @@ loadingSpinner(shared);
 loadingSpinnerDialog(shared);
 policiesDirective(shared);
 inputLimitDirective(shared);
-fileInputDirective(shared);
+fileReadDirective(shared);
 
 //services
 import toastService from './services/toast.service';

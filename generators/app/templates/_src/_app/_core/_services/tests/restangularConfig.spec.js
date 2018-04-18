@@ -29,10 +29,6 @@ describe('restangular Service rules test', function() {
 		})
 	});
 
-	afterEach(function() {
-
-	});
-
 	it('canary test', function() {
 		expect(true).toBe(true);
 	});
