@@ -18,7 +18,7 @@ function routeConfig($urlRouterProvider <% if (props.ocLazyLoad) { %>, $statePro
 		.state('async', {
 			url: '/async',
 			templateUrl: asyncTemplate,
-			controller: 'asyncController',
+			controller: 'asyncCtrl',
 			resolve: {
 				asyncPreloading: resolverProvider.asyncPagePrealoading
 			}

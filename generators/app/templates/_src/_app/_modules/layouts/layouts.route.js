@@ -17,32 +17,32 @@ export default function(app) {
 			.state('main.layouts', {
 				url: '/layouts',
 				templateUrl: tpl,
-				controller: 'layoutsController',
+				controller: 'layoutsCtrl',
 				controllerAs: 'vm'
 			}).state('main.layouts.2column', {
 				url: '/2column',
 				templateUrl: twoColumnTpl,
-				controller: 'layoutsController',
+				controller: 'layoutsCtrl',
 				controllerAs: 'vm'
 			}).state('main.layouts.dialog', {
 				url: '/dialog',
 				templateUrl: dialogTpl,
-				controller: 'layoutsController',
+				controller: 'layoutsCtrl',
 				controllerAs: 'vm'
 			}).state('main.layouts.grid', {
 				url: '/grid',
 				templateUrl: gridTpl,
-				controller: 'layoutsController',
+				controller: 'layoutsCtrl',
 				controllerAs: 'vm'
 			}).state('main.layouts.form', {
 				url: '/form',
 				templateUrl: formTpl,
-				controller: 'layoutsController',
+				controller: 'layoutsCtrl',
 				controllerAs: 'vm'
 			}).state('main.layouts.report', {
 				url: '/report',
 				templateUrl: reportTpl,
-				controller: 'layoutsController',
+				controller: 'layoutsCtrl',
 				controllerAs: 'vm'
 			});
 	}

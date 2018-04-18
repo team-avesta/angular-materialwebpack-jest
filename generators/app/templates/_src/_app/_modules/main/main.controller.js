@@ -6,7 +6,7 @@ import './header/header.html';
 import './notification.html';
 
 export default function(app) {
-	app.controller('MainController', MainController);
+	app.controller('MainCtrl', MainController);
 
 	function MainController($log) {
 		'ngInject';

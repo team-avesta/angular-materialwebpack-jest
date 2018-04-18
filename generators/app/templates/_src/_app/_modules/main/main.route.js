@@ -14,7 +14,7 @@ export default function(app) {
 				url: '',
 				abstract: true,
 				templateUrl: mainTpl,
-				controller: 'MainController',
+				controller: 'MainCtrl',
 				controllerAs: 'main'
 			})
 			.state('main.home', {

@@ -2,7 +2,7 @@
 import dialogFormTpl from './html/DialogForm.html';
 
 export default function(app) {
-	app.controller('layoutsController', controller);
+	app.controller('layoutsCtrl', controller);
 
 	function controller($log, $mdDialog) {
 		'ngInject';
@@ -171,7 +171,7 @@ export default function(app) {
 
 		function onClickOpenDialog(ev) {
 			$mdDialog.show({
-					controller: 'dialogFormController',
+					controller: 'dialogFormCtrl',
 					controllerAs: 'vm',
 					templateUrl: dialogFormTpl,
 					targetEvent: ev,

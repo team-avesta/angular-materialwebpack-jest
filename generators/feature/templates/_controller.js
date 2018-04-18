@@ -1,5 +1,5 @@
 export default function(app) {
-	app.controller('<%=featureName+"Controller"%>', controller);
+	app.controller('<%=featureName+"Ctrl"%>', controller);
 
 	function controller($log) {
 		'ngInject';

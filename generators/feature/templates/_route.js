@@ -1,4 +1,3 @@
-import controller from '<%= "./"+featureName+".controller" %>'
 import tpl from '<%= "./"+featureName+".html" %>'
 
 export default function(app) {
@@ -11,7 +10,7 @@ export default function(app) {
 		$stateProvider.state("<%= featureName %>", {
 			url: "<%=" / "+featureName %>",
 			templateUrl: tpl,
-			controller: controller,
+			controller: '<%= "./"+featureName+"Ctrl" %>',
 			controllerAs: "vm"
 		});
 	}

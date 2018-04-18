@@ -2,7 +2,7 @@
 import dialogFormTpl from './html/DialogForm.html';
 
 export default function(app) {
-	app.controller('dialogFormController', controller);
+	app.controller('dialogFormCtrl', controller);
 
 	function controller($mdDialog) {
 		'ngInject';

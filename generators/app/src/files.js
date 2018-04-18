@@ -138,6 +138,26 @@ module.exports = function (AngularWebpackES6Generator) {
             this
         );
 
+        this.fs.copy(
+            this.templatePath('_src/_app/_modules/login/**/*'),
+            this.destinationPath('src/app/modules/login')
+        );
+
+        this.fs.copy(
+            this.templatePath('_src/_app/_modules/otp/**/*'),
+            this.destinationPath('src/app/modules/otp')
+        );
+
+        this.fs.copy(
+            this.templatePath('_src/_app/_modules/registration/**/*'),
+            this.destinationPath('src/app/modules/registration')
+        );
+
+        this.fs.copy(
+            this.templatePath('_src/_app/_modules/forgotPassword/**/*'),
+            this.destinationPath('src/app/modules/forgotPassword')
+        );
+
         if (this.props.ocLazyLoad) {
             this.fs.copy(
                 this.templatePath('_src/_app/_modules/async-page-example/**/*'),

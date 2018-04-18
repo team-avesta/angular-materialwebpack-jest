@@ -11,6 +11,9 @@ import indexRoutes from './index.routes';
 import mainModule from './modules/main/main.module';
 import layoutsModule from './modules/layouts/layouts.module';
 import loginModule from './modules/login/login.module';
+import forgotPasswordModule from './modules/forgotPassword/forgotPassword.module';
+import otpModule from './modules/otp/otp.module';
+import registrationModule from './modules/registration/registration.module';
 
 const App = angular.module(
 	"<%= props.appName %>", [
@@ -23,6 +26,7 @@ const App = angular.module(
 		"validation.schema",
 		"validation.rule",
 		"md.data.table",
+		"md-steppers",
 		// core
 		coreModule.name,
 
@@ -35,7 +39,10 @@ const App = angular.module(
 		// pages
 		mainModule.name,
 		layoutsModule.name,
-		loginModule.name
+		loginModule.name,
+		forgotPasswordModule.name,
+		otpModule.name,
+		registrationModule.name
 	]
 );
 

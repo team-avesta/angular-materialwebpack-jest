@@ -9,6 +9,7 @@ import "angular";
 import "@uirouter/angularjs";
 import "v-accordion";
 import "angular-material-data-table";
+import "md-steppers";
 <% for(var i=0; i<importList.length; i++) { %>
 import "<%= importList[i] %>";
 <% } %>
@@ -22,3 +23,4 @@ import '_scripts/form_validation/validation.module.js';
 import '../../node_modules/v-accordion/dist/v-accordion.min.css';
 import '../../node_modules/angular-material/angular-material.min.css';
 import '../../node_modules/angular-material-data-table/dist/md-data-table.min.css';
+import '../../node_modules/md-steppers/dist/md-steppers.min.css';
