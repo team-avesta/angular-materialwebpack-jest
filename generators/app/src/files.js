@@ -101,19 +101,22 @@ module.exports = function (AngularWebpackES6Generator) {
             this.destinationPath('src/app/components/footer')
         );
 
-        this.fs.copy(
+        this.fs.copyTpl(
             this.templatePath('_src/_app/_core/core.module.js'),
-            this.destinationPath('src/app/core/core.module.js')
+            this.destinationPath('src/app/core/core.module.js'),
+            this
         );
 
-        this.fs.copy(
+        this.fs.copyTpl(
             this.templatePath('_src/_app/_core/_directives/**/*'),
-            this.destinationPath('src/app/core/directives')
+            this.destinationPath('src/app/core/directives'),
+            this
         );
 
-        this.fs.copy(
+        this.fs.copyTpl(
             this.templatePath('_src/_app/_core/_services/**/*'),
-            this.destinationPath('src/app/core/services')
+            this.destinationPath('src/app/core/services'),
+            this
         );
 
         this.fs.copy(
@@ -161,6 +164,11 @@ module.exports = function (AngularWebpackES6Generator) {
         this.fs.copy(
             this.templatePath('_.gitlab-ci.yml'),
             this.destinationPath('.gitlab-ci.yml')
+        );
+
+        this.fs.copy(
+            this.templatePath('_vendor.webpack.config.js'),
+            this.destinationPath('vendor.webpack.config.js')
         );
 
         if (this.props.ocLazyLoad) {

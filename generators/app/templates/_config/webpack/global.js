@@ -152,6 +152,10 @@ module.exports = function(_path) {
 			new HtmlWebpackPlugin({
 				filename: 'index.html',
 				template: path.join(_path, 'src', 'tpl-index.ejs')
+			}),
+			new webpack.DllReferencePlugin({
+				//context: __dirname,
+				manifest: require(path.join(_path, 'dist', 'vendor.json'))
 			})
 		]
 	};

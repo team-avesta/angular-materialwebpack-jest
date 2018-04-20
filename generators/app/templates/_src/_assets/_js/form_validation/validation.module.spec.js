@@ -351,32 +351,41 @@ describe('validation rules test', function() {
 
 	it('matching should return false if value and matchingValue are not same', function() {
 		var matching = expression('matching');
-		var attrs = { matchingValue: 'aaa' }
+		var attrs = {
+			matchingValue: 'aaa'
+		}
 		expect(matching('val', 'scope', 'element', attrs)).toBe(false);
 	});
 
 	it('matching should return false if value and matchingValue are same but type are diffrent', function() {
 		var matching = expression('matching');
-		var attrs = { matchingValue: false }
+		var attrs = {
+			matchingValue: false
+		}
 		expect(matching('false', 'scope', 'element', attrs)).toBe(false);
 	});
 
 	it('matching should return true if value and matchingValue are same but type are diffrent', function() {
 		var matching = expression('matching');
-		var attrs = { matchingValue: '0' }
+		var attrs = {
+			matchingValue: '0'
+		}
 		expect(matching(0, 'scope', 'element', attrs)).toBe(false);
 	});
 
 	it('matching should return true if value and matchingValue are same with same type', function() {
 		var matching = expression('matching');
-		var attrs = { matchingValue: 0 }
+		var attrs = {
+			matchingValue: 0
+		}
 		expect(matching(0, 'scope', 'element', attrs)).toBe(true);
 	});
 
 	it('matching should return true if value and matchingValue are same with same type', function() {
 		var matching = expression('matching');
-		var attrs = { matchingValue: 'stringval' }
+		var attrs = {
+			matchingValue: 'stringval'
+		}
 		expect(matching('stringval', 'scope', 'element', attrs)).toBe(true);
 	});
-
 });

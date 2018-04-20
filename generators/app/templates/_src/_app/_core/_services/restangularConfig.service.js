@@ -4,7 +4,7 @@ export default function(app) {
 	app
 		.factory('restangularConfigService', service)
 
-	function service(Restangular, toastService, authService, pubSubService, eventsConstantService, $q, urlConstantService, MainService) {
+	function service(Restangular, toastService, authService, pubSubService, eventsConstantService, $q, urlConstantService, mainService) {
 		var isOffline = false;
 		var service = {
 			init: init,
@@ -19,24 +19,26 @@ export default function(app) {
 		function init() {
 			Restangular.setBaseUrl(urlConstantService.apiEndpoint + '/api/');
 			Restangular.setErrorInterceptor(function(response, deferred, responseHandler) {
-				//in case of any 401 error code redirect to login page
-				if (response.status === 401 || response.status === 403) {
-					dashboardService.redirectToLogin();
-					return true;
-				}
+				return $q((resolve, reject) => {
+					//in case of any 401 error code redirect to login page
+					if (response.status === 401 || response.status === 403) {
+						mainService.redirectToLogin();
+						return true;
+					}
 
-				pubSubService.publish(eventsConstantService.message._HIDE_LOADING_SPINNER_);
-				pubSubService.publish(eventsConstantService.message._HIDE_DIALOG_LOADING_SPINNER_);
+					pubSubService.publish(eventsConstantService.message._HIDE_LOADING_SPINNER_);
+					pubSubService.publish(eventsConstantService.message._HIDE_DIALOG_LOADING_SPINNER_);
 
-				var errorObj = { message: 'Something went wrong.' };
-				if (response.status === -1) {
-					service.showErrorMessage(errorObj);
-				} else if (response.data && response.data.message) {
-					service.showErrorMessage(response.data);
-				} else {
-					service.showErrorMessage(errorObj);
-				}
-				return deferred.reject('Something went wrong. Please try again.');
+					var errorObj = { message: 'Something went wrong.' };
+					if (response.status === -1) {
+						service.showErrorMessage(errorObj);
+					} else if (response.data && response.data.message) {
+						service.showErrorMessage(response.data);
+					} else {
+						service.showErrorMessage(errorObj);
+					}
+					reject('Something went wrong. Please try again.');
+				});
 			});
 
 			Restangular.addResponseInterceptor(function(data, operation, what, url, response, deferred) {

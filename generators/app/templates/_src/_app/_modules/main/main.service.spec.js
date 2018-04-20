@@ -6,8 +6,8 @@ describe('main service test', function() {
 		//include the main module
 		angular.mock.module('myNgApp');
 		//get reference to service object
-		angular.mock.inject((MainService) => {
-			service = MainService;
+		angular.mock.inject((mainService) => {
+			service = mainService;
 		});
 	});
 

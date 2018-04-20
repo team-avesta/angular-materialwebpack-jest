@@ -1,7 +1,7 @@
 'use strict'
 export default function(app) {
 	let urls;
-	if (NODE_ENV === 'production') {
+	if (process.env.NODE_ENV === 'production') {
 		urls = {
 			apiEndpoint: '',
 			cdn: ''

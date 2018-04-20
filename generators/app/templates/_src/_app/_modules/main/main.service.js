@@ -1,7 +1,7 @@
 'use strict';
 
 export default function(app) {
-	app.factory('MainService', MainService)
+	app.factory('mainService', MainService)
 
 	function MainService($log, ajaxService, dialogService, stateConstantService) {
 		'ngInject';

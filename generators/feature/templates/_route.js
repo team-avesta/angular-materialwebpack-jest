@@ -7,10 +7,10 @@ export default function(app) {
 	function routes($stateProvider) {
 		'ngInject';
 
-		$stateProvider.state("<%= featureName %>", {
-			url: "<%=" / "+featureName %>",
+		$stateProvider.state("main.<%= featureName %>", {
+			url: "/<%=featureName%>",
 			templateUrl: tpl,
-			controller: '<%= "./"+featureName+"Ctrl" %>',
+			controller: '<%=featureName+"Ctrl"%>',
 			controllerAs: "vm"
 		});
 	}

@@ -1,7 +1,7 @@
 'use strict';
 import '_appRoot/index.bootstrap';
 
-describe('restangular Service rules test', function() {
+describe('restangularConfigService rules test', function() {
 	var _Restangular = null,
 		_errorInterceptor = null,
 		_toastService = null,
@@ -9,19 +9,21 @@ describe('restangular Service rules test', function() {
 		_requestInterceptors = null,
 		_restangularConfigService,
 		_pubSubService,
+		_mainService,
 		_eventsConstantService,
 		q = null,
 		sandbox = null;
 
 	beforeEach(function() {
-		angular.mock.module("myNgApp");
+		angular.mock.module("<%= props.appName %>");
 
-		angular.mock.inject((restangularConfigService, Restangular, toastService, pubSubService, $q, eventsConstantService) => {
+		angular.mock.inject((restangularConfigService, Restangular, toastService, pubSubService, $q, eventsConstantService, mainService) => {
 			_restangularConfigService = restangularConfigService
 			_eventsConstantService = eventsConstantService;
 			_Restangular = Restangular;
 			_toastService = toastService;
 			_pubSubService = pubSubService;
+			_mainService = mainService;
 			q = $q;
 			_errorInterceptor = _Restangular.configuration.errorInterceptors[0];
 			_requestInterceptors = _Restangular.configuration.fullRequestInterceptor;
@@ -132,27 +134,21 @@ describe('restangular Service rules test', function() {
 		expect(_restangularConfigService.showErrorMessage).toHaveBeenCalledWith(errorObj);
 	});
 
-	it('setErrorInterceptor should return true with watever params it calls', function() {
+	it('setErrorInterceptor should always return promise', function() {
 		_pubSubService.publish = jest.fn(function() {
 			return null;
 		});
 		_restangularConfigService.showErrorMessage = jest.fn(function() {
 			return null;
 		});
-		var result = _errorInterceptor({});
-		expect(result).toBe(true);
+		var result = typeof _errorInterceptor({}).then;
+		expect(result).toBe('function');
 	});
 
 	it('setErrorInterceptor should not call pubSubService.publish if response.status===401', function() {
 		_pubSubService.publish = jest.fn();
 		_errorInterceptor({ status: 401 });
 		expect(_pubSubService.publish).not.toHaveBeenCalled();
-	});
-
-	it('setErrorInterceptor should return true if service.isOffline variable is true', function() {
-		_Restangular.isOffline = true;
-		var value = _errorInterceptor({ status: 200 });
-		expect(value).toBe(true);
 	});
 
 	it('showErrorMessage should publish _ADD_ERROR_MESSAGE_ when called', function() {
