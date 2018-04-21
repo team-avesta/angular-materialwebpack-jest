@@ -167,6 +167,11 @@ module.exports = function (AngularWebpackES6Generator) {
         );
 
         this.fs.copy(
+            this.templatePath('_readme.md'),
+            this.destinationPath('readme.md')
+        );
+
+        this.fs.copy(
             this.templatePath('_vendor.webpack.config.js'),
             this.destinationPath('vendor.webpack.config.js')
         );
