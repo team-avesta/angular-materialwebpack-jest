@@ -1,6 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
-
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 module.exports = {
 	resolve: {
 		extensions: ['.js', '.jsx', '.json', '.less', '.css'],
@@ -29,7 +29,7 @@ module.exports = {
 		]
 	},
 	output: {
-		filename: '[name].dll.js',
+		filename: '[name].[chunkhash].dll.js',
 		path: path.resolve('./dist/'),
 		library: '[name]'
 	},
@@ -37,6 +37,16 @@ module.exports = {
 		new webpack.DllPlugin({
 			name: '[name]',
 			path: path.resolve('./dist/[name].json')
+		}),
+		new CleanWebpackPlugin(['dist'], {
+			root: __dirname,
+			verbose: true,
+			dry: false
+		}),
+		new webpack.optimize.UglifyJsPlugin({
+			minimize: true,
+			warnings: false,
+			sourceMap: false,
 		})
 	],
 	module: {

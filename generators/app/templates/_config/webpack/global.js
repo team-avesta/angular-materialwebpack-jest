@@ -1,16 +1,16 @@
 'use strict';
 
-var path = require('path');
-var webpack = require('webpack');
-var autoprefixer = require('autoprefixer');
-var Manifest = require('manifest-revision-webpack-plugin');
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
-var HtmlWebpackPlugin = require("html-webpack-plugin");
-
-var rootPublic = path.resolve('./src');
-var NODE_ENV = process.env.NODE_ENV || "production";
-var DEVELOPMENT = NODE_ENV === "production" ? false : true;
-var stylesLoader = 'css-loader?root=' + rootPublic + '&sourceMap!postcss-loader!sass-loader?outputStyle=expanded&sourceMap=true&sourceMapContents=true';
+const path = require('path');
+const webpack = require('webpack');
+const autoprefixer = require('autoprefixer');
+const Manifest = require('manifest-revision-webpack-plugin');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
+const rootPublic = path.resolve('./src');
+const NODE_ENV = process.env.NODE_ENV || "production";
+const DEVELOPMENT = NODE_ENV === "production" ? false : true;
+const stylesLoader = 'css-loader?root=' + rootPublic + '&sourceMap!postcss-loader!sass-loader?outputStyle=expanded&sourceMap=true&sourceMapContents=true';
 
 module.exports = function(_path) {
 	var rootAssetPath = _path + 'src';
@@ -118,14 +118,8 @@ module.exports = function(_path) {
 				}
 			}),
 			new webpack.ProvidePlugin({
-				<% if (props.moment) { %>
-				moment: 'moment',
-				'window.moment': 'moment',
-				<% } %>
-				<% if (props.lodash) { %>
-				_: 'lodash',
-				'window._': 'lodash',
-				<% } %>
+
+
 			}),
 			new webpack.DefinePlugin({
 				'NODE_ENV': JSON.stringify(NODE_ENV)
@@ -156,6 +150,10 @@ module.exports = function(_path) {
 			new webpack.DllReferencePlugin({
 				//context: __dirname,
 				manifest: require(path.join(_path, 'dist', 'vendor.json'))
+			}),
+			new AddAssetHtmlPlugin({
+				filepath: path.resolve(_path, 'dist', '*.dll.js'),
+				includeSourcemap: false
 			})
 		]
 	};
