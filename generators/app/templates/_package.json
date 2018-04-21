@@ -41,6 +41,14 @@
 			"^_scripts(.*)$": "<rootDir>/src/assets/js/$1"
 		}
 	},
+	"config":
+	{
+		"ghooks":
+		{
+			"pre-push": "./bin/pre-push.sh",
+			"pre-commit": "npm run eslint"
+		}
+	},
 	"dependencies":
 	{
 		"@uirouter/angularjs": "^1.0.11",
@@ -53,6 +61,7 @@
 	},
 	"devDependencies":
 	{
+		"ghooks": "^2.0.3",
 		"add-asset-html-webpack-plugin": "^2.1.3",
 		"angular-mocks": "^1.6.6",
 		"assets-webpack-plugin": "^3.4.0",

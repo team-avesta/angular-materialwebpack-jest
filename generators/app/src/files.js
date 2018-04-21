@@ -176,6 +176,11 @@ module.exports = function (AngularWebpackES6Generator) {
             this.destinationPath('vendor.webpack.config.js')
         );
 
+        this.fs.copy(
+            this.templatePath('_bin/**/*'),
+            this.destinationPath('bin')
+        );
+
         if (this.props.ocLazyLoad) {
             this.fs.copy(
                 this.templatePath('_src/_app/_modules/async-page-example/**/*'),
